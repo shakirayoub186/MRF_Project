@@ -1,0 +1,7 @@
+.scroll-container {
+    max-height: 300px; /* adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}

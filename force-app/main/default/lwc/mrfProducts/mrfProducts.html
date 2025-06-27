@@ -1,0 +1,136 @@
+<template>
+    <lightning-card>
+        <!-- Header with Title and Add Button -->
+        <div class="slds-grid slds-grid_align-spread slds-p-horizontal_medium slds-p-vertical_small slds-border_bottom">
+            <h2 class="slds-text-heading_small slds-truncate" title="Add MRF Products">Add MRF Products</h2>
+            <lightning-button variant="brand" label="Add Product" onclick={addRow}></lightning-button>
+        </div>
+
+        <!-- Table Body -->
+        <div class="slds-p-around_medium">
+            <div class="scroll-container">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Category</th>
+                            <th>Item</th>
+                            <th>Part Number</th>
+                            <th>Description</th>
+                            <th>List Price (INR)</th>
+                            <th>GL</th>
+                            <th>GL Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={productRows} for:item="row" for:index="index">
+                            <tr key={row.key}>
+                                <!-- Remove Button -->
+                                <td>
+                                    <lightning-button-icon icon-name="utility:delete" alternative-text="Remove"
+                                        onclick={removeRow} data-index={index}>
+                                    </lightning-button-icon>
+                                </td>
+
+                                <!-- Category -->
+                                <td>
+                                    <lightning-combobox value={row.category} options={categoryOptions}
+                                        data-index={index} data-field="category" onchange={handleChange}
+                                        variant="label-hidden">
+                                    </lightning-combobox>
+                                </td>
+
+                                <!-- Item (visible only if Category is selected) -->
+                                <td>
+                                    <template if:true={row.category}>
+                                        <template if:true={row.isNonInventory}>
+                                            <!-- Show input field for Non-Inventory -->
+                                            <lightning-input value={row.item} data-index={index} data-field="item"
+                                                onchange={handleChange} variant="label-hidden">
+                                            </lightning-input>
+                                        </template>
+                                        <template if:false={row.isNonInventory}>
+                                            <!-- Show dropdown for Inventory -->
+                                            <lightning-combobox value={row.item} options={itemOptions}
+                                                data-index={index} data-field="item" onchange={handleChange}
+                                                variant="label-hidden">
+                                            </lightning-combobox>
+                                        </template>
+                                    </template>
+                                    <template if:false={row.category}>
+                                        <lightning-combobox disabled variant="label-hidden"></lightning-combobox>
+                                    </template>
+                                </td>
+
+
+                                <!-- Part Number -->
+                                <td>
+                                    <template if:true={row.item}>
+                                        <lightning-input value={row.part} data-index={index} data-field="part"
+                                            onchange={handleChange} variant="label-hidden">
+                                        </lightning-input>
+                                    </template>
+                                    <template if:false={row.item}>
+                                        <lightning-input disabled variant="label-hidden"></lightning-input>
+                                    </template>
+                                </td>
+
+                                <!-- Description -->
+                                <td>
+                                    <template if:true={row.item}>
+                                        <lightning-input value={row.description} data-index={index}
+                                            data-field="description" onchange={handleChange} variant="label-hidden"
+                                            style="min-width: 200px;">
+                                        </lightning-input>
+                                    </template>
+                                    <template if:false={row.item}>
+                                        <lightning-input disabled variant="label-hidden"
+                                            style="min-width: 200px;"></lightning-input>
+                                    </template>
+                                </td>
+                                <!-- List Price -->
+                                <td>
+                                    <template if:true={row.item}>
+                                        <lightning-input type="number" value={row.listPrice} data-index={index}
+                                            data-field="listPrice" onchange={handleChange} variant="label-hidden">
+                                        </lightning-input>
+                                    </template>
+                                    <template if:false={row.item}>
+                                        <lightning-input type="number" disabled
+                                            variant="label-hidden"></lightning-input>
+                                    </template>
+                                </td>
+
+                                <!-- GL -->
+                                <td>
+                                    <template if:true={row.item}>
+                                        <lightning-input type="number" value={row.gl} data-index={index} data-field="gl"
+                                            onchange={handleChange} variant="label-hidden" style="min-width: 80px;">
+                                        </lightning-input>
+                                    </template>
+                                    <template if:false={row.item}>
+                                        <lightning-input type="number" disabled variant="label-hidden"
+                                            style="min-width: 80px;"></lightning-input>
+                                    </template>
+                                </td>
+
+                                <!-- GL Name -->
+                                <td>
+                                    <template if:true={row.item}>
+                                        <lightning-input value={row.glName} data-index={index} data-field="glName"
+                                            onchange={handleChange} variant="label-hidden">
+                                        </lightning-input>
+                                    </template>
+                                    <template if:false={row.item}>
+                                        <lightning-input disabled variant="label-hidden"></lightning-input>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </lightning-card>
+</template>

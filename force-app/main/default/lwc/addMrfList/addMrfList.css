@@ -1,0 +1,5 @@
+.scroll-container {
+    max-height: 60vh; /* Control vertical space */
+    overflow-y: auto;
+    padding-right: 1rem;
+}

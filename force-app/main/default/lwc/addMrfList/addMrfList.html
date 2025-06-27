@@ -1,0 +1,22 @@
+<template>
+    <lightning-modal-header label="Add MRF Products"></lightning-modal-header>
+
+    <!-- Scrollable area inside modal -->
+    <lightning-modal-body>
+        <div class="scroll-container">
+            <c-product-details record-id={recordId}></c-product-details>
+            <c-mrf-products onrecordsaved={handleClose} record-id={recordId}></c-mrf-products>
+        </div>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <div class="slds-grid slds-grid_align-spread slds-size_1-of-1">
+            <div>
+                <lightning-button label="Back" onclick={handleClose} variant="neutral"></lightning-button>
+            </div>
+            <div>
+                <lightning-button label="Save" onclick={handleSaveClick} variant="brand"></lightning-button>
+            </div>
+        </div>
+    </lightning-modal-footer>
+</template>
