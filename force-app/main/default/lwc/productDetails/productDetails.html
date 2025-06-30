@@ -1,21 +1,45 @@
 <template>
+    <!-- Only show the info box if mrfName is available -->
     <template if:true={mrfName}>
+        <!-- Container box with default theme -->
         <div class="slds-box slds-theme_default">
+
+            <!-- Icon and heading -->
             <div class="slds-media slds-m-bottom_small">
                 <div class="slds-media__figure">
-                    <lightning-icon icon-name="utility:info" alternative-text="info" size="small"></lightning-icon>
+                    <!-- Info icon -->
+                    <lightning-icon icon-name="utility:info" alternative-text="info" size="small">
+                    </lightning-icon>
                 </div>
+
                 <div class="slds-media__body">
+                    <!-- Section Heading -->
                     <h3 class="slds-text-heading_small slds-m-bottom_x-small">Information</h3>
+
+                    <!-- 3-column layout showing MRF details -->
                     <div class="slds-grid slds-wrap">
+                        <!-- MRF Name -->
                         <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
-                            <p><strong>MRF Name</strong><br />{mrfName}</p>
+                            <p>
+                                <strong>MRF Name</strong><br />
+                                {mrfName}
+                            </p>
                         </div>
+
+                        <!-- Owner Name -->
                         <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
-                            <p><strong>Owner Name</strong><br />{ownerName}</p>
+                            <p>
+                                <strong>Owner Name</strong><br />
+                                {ownerName}
+                            </p>
                         </div>
+
+                        <!-- Requested Date -->
                         <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
-                            <p><strong>Requested Date</strong><br />{requestedDate}</p>
+                            <p>
+                                <strong>Requested Date</strong><br />
+                                {requestedDate}
+                            </p>
                         </div>
                     </div>
                 </div>
