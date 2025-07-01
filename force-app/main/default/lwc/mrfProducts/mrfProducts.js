@@ -150,7 +150,9 @@ export default class MrfProductTable extends LightningElement {
         const index = event.target.dataset.index;
         const field = event.target.dataset.field;
         const value = event.detail.value;
+        console.log(index, field, value , 'index, field, value');
 
+        
         const updatedRows = [...this.productRows];
         updatedRows[index][field] = value;
 

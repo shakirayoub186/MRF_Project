@@ -1,41 +1,21 @@
 <template>
-    <!-- Modal Header -->
     <lightning-modal-header label="Add MRF Products"></lightning-modal-header>
 
-    <!-- Modal Body (Scrollable if needed) -->
+    <!-- Scrollable area inside modal -->
     <lightning-modal-body>
         <div class="scroll-container">
-            <!-- Product Details Component (displays details of parent MRF or additional info) -->
             <c-product-details record-id={recordId}></c-product-details>
-
-            <!-- MRF Products Table Component -->
-            <!-- This component emits "recordsaved" event on successful save -->
-            <c-mrf-products 
-                onrecordsaved={handleClose} 
-                record-id={recordId}>
-            </c-mrf-products>
+            <c-mrf-products onrecordsaved={handleClose} record-id={recordId}></c-mrf-products>
         </div>
     </lightning-modal-body>
 
-    <!-- Modal Footer with Actions -->
     <lightning-modal-footer>
         <div class="slds-grid slds-grid_align-spread slds-size_1-of-1">
-            <!-- Back Button - closes the modal -->
             <div>
-                <lightning-button 
-                    label="Back" 
-                    onclick={handleClose} 
-                    variant="neutral">
-                </lightning-button>
+                <lightning-button label="Back" onclick={handleClose} variant="neutral"></lightning-button>
             </div>
-
-            <!-- Save Button - triggers handleSaveClick to invoke save on child -->
             <div>
-                <lightning-button 
-                    label="Save" 
-                    onclick={handleSaveClick} 
-                    variant="brand">
-                </lightning-button>
+                <lightning-button label="Save" onclick={handleSaveClick} variant="brand"></lightning-button>
             </div>
         </div>
     </lightning-modal-footer>
